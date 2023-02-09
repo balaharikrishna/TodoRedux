@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/TodoRedux/static/css/main.c787e4e8.css",
+    "main.js": "/TodoRedux/static/js/main.25faa1eb.js",
+    "static/js/787.b8fa26a9.chunk.js": "/TodoRedux/static/js/787.b8fa26a9.chunk.js",
+    "static/media/bookandpentodo.webp": "/TodoRedux/static/media/bookandpentodo.e5a03534f4055987fcd3.webp",
+    "service-worker.js": "/TodoRedux/service-worker.js",
+    "index.html": "/TodoRedux/index.html",
+    "main.c787e4e8.css.map": "/TodoRedux/static/css/main.c787e4e8.css.map",
+    "main.25faa1eb.js.map": "/TodoRedux/static/js/main.25faa1eb.js.map",
+    "787.b8fa26a9.chunk.js.map": "/TodoRedux/static/js/787.b8fa26a9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c787e4e8.css",
+    "static/js/main.25faa1eb.js"
+  ]
+}
