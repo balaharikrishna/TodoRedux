@@ -8,7 +8,7 @@ const reducer = (state = initialData, action) => {
     case "ADD_LIST":
       const { id, listName, tasks } = action.payload;
       if (state.localData?.length >= 0) {
-        return {
+        let addListResult= {
           ...state,
           localData: [
             ...state.localData,
@@ -18,9 +18,12 @@ const reducer = (state = initialData, action) => {
               tasks: tasks,
             },
           ],
-        };
+        }
+        localStorage.setItem("tododata", JSON.stringify(addListResult.localData));
+        return addListResult;
+
       } else {
-        return {
+        let addListResult =  {
           localData: [
             {
               listName: listName,
@@ -29,6 +32,8 @@ const reducer = (state = initialData, action) => {
             },
           ],
         };
+        localStorage.setItem("tododata", JSON.stringify(addListResult.localData));
+        return addListResult;
       }
 
     case "UPDATE_LIST":
@@ -36,21 +41,23 @@ const reducer = (state = initialData, action) => {
       const index = state.localData.findIndex((x) => x.id == editListId);
       const newArray = [...state.localData];
       newArray[index].listName = updatedListName;
-      return {
+      let updateListResult = {
         ...state,
         localData: newArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(updateListResult.localData));
+      return updateListResult;
 
     case "DELETE_LIST":
-      console.log(action.payload.deleteListId);
       const filteredList = state.localData.filter(
         (x) => x.id !== action.payload.deleteListId
       );
-      return {
+      let deleteListResult = {
         ...state,
         localData: filteredList,
       };
-
+      localStorage.setItem("tododata", JSON.stringify(deleteListResult.localData));
+      return deleteListResult;
     case "ADD_TASK":
       const { listId, taskName, priority, isChecked } = action.payload;
       var listDataIndex = state.localData.findIndex((x) => x.id == listId);
@@ -72,10 +79,12 @@ const reducer = (state = initialData, action) => {
         },
       ];
       newListArray[listDataIndex].tasks = newTask;
-      return {
+      let addTaskResult = {
         ...state,
         localData: newListArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(addTaskResult.localData));
+      return addTaskResult;
 
     case "UPDATE_TASK":
       const { updateListId, editTaskId, updateTaskName, updatePriority } =
@@ -91,10 +100,12 @@ const reducer = (state = initialData, action) => {
         updateTaskName;
       updateListArray[UpdateListDataIndex].tasks[taskIndex].priority =
         updatePriority;
-      return {
+      let updateTaskResult = {
         ...state,
         localData: updateListArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(updateTaskResult.localData));
+      return updateTaskResult;
 
     case "DELETE_TASK":
       const { deletelistId, deleteTaskId } = action.payload;
@@ -103,10 +114,12 @@ const reducer = (state = initialData, action) => {
       deleteListArray[listIndex].tasks = deleteListArray[
         listIndex
       ].tasks.filter((i) => i.id !== deleteTaskId);
-      return {
+      let deleteTaskResult = {
         ...state,
         localData: deleteListArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(deleteTaskResult.localData));
+      return deleteTaskResult;
 
     case "COMPLETED_TASK":
       const completedListArray = [...state.localData];
@@ -118,10 +131,12 @@ const reducer = (state = initialData, action) => {
         });
       });
       console.log(action.payload, completedListArray);
-      return {
+      let completedTaskResult = {
         ...state,
         localData: completedListArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(completedTaskResult.localData));
+      return completedTaskResult;
 
     case "UNDO_COMPLETED_TASK":
       const { undoCompletedTaskListId, undoCompletedTaskId } = action.payload;
@@ -135,18 +150,22 @@ const reducer = (state = initialData, action) => {
       undoCompletedListArray[completedlistIndex].tasks[
         CompletedtaskIndex
       ].isChecked = false;
-      return {
+      let undoCompletedTaskResult = {
         ...state,
         localData: undoCompletedListArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(undoCompletedTaskResult.localData));
+      return undoCompletedTaskResult;
       
     case "EMPTY_STORE":
       let emptyArray = null;
       console.log("hitted empry store reducer");
-      return {
+      let emptyStoreResult = {
         ...state,
         localData: emptyArray,
       };
+      localStorage.setItem("tododata", JSON.stringify(emptyStoreResult.localData));
+      return emptyStoreResult;
 
     default:
       return state;

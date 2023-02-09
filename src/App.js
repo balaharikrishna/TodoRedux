@@ -9,9 +9,7 @@ function App() {
     <Provider store={store}>
     <BrowserRouter basename='/TodoRedux'> 
       <Routes>
-      
         <Route path="/" element={<Home />}></Route>
-        
       </Routes>
     </BrowserRouter>
     </Provider>

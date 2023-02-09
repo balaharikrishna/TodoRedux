@@ -18,12 +18,6 @@ const Addlist = ({ show, changeShowState, editListId}) => {
   let arrObjsLength = localData? localData.length - 1: 0;
   let listId = localData == null ||localData== undefined ||localData== "" ?  0 : localData[arrObjsLength].id;
 
-  useEffect(()=>{
-    if(localData && localData.length >= 0 ){
-      localStorage.setItem("tododata", JSON.stringify(localData));
-    }
-  },[localData])
-
   useEffect(() => {
     const list = localData == null || undefined || "" ? "" : localData.find(x => x.id == editListId);
       setListName(list ? list.listName : "");
